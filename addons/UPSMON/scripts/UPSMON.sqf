@@ -3,7 +3,7 @@
 //  version 5.1.0  beta 1
 //
 //  Author: Monsada (chs.monsada@gmail.com) 
-//		Comunidad Hispana de Simulación: 
+//		Comunidad Hispana de SimulaciÃ³n: 
 //
 //		Wiki: http://dev-heaven.net/projects/upsmon/wiki
 //		Forum: http://forums.bistudio.com/showthread.php?t=91696
@@ -1521,7 +1521,7 @@ while {_loop} do {
 			//Establecemos una distancia de flanqueo	
 			_flankdist = ((random 0.5)+0.7)*KRON_UPS_safedist;
 						
-			//La distancia de flanqueo no puede ser superior a la distancia del objetivo o nos pordría pillar por la espalda
+			//La distancia de flanqueo no puede ser superior a la distancia del objetivo o nos pordrÃ­a pillar por la espalda
 			_flankdist = if ((_flankdist*1.40) >= _dist) then {_dist*.65} else {_flankdist};
 			
 			if (_inheli) then {_flankdist = _flankdist / 2;};
@@ -1529,20 +1529,20 @@ while {_loop} do {
 			// avoidance position (right or left of unit)
 			_avoidPos = [_currPos,_dir2, KRON_UPS_safedist] call MON_GetPos2D;		
 
-			//Calculamos posición de avance frontal			
+			//Calculamos posiciÃ³n de avance frontal			
 			_frontPos = [_targetPos,_dir2, _flankdist] call MON_GetPos2D;	
 						
 
-			//Adaptamos el ángulo de flanqueo a la distancia		
+			//Adaptamos el Ã¡ngulo de flanqueo a la distancia		
 			_newflankAngle = ((random(KRON_UPS_flankAngle)+1) * 2 * (_flankdist / KRON_UPS_safedist )) + (KRON_UPS_flankAngle/1.4) ;
 			if (_newflankAngle > KRON_UPS_flankAngle) then {_newflankAngle = KRON_UPS_flankAngle};			
 			
-			//Calculamos posición de flanqueo 1 45º
+			//Calculamos posiciÃ³n de flanqueo 1 45Âº
 			_dirf1 = (_dir2+_newflankAngle) mod 360;			
 			_flankPos = [_targetPos,_dirf1, _flankdist] call MON_GetPos2D;					
 			
 			
-			//Calculamos posición de flanqueo 2 -45º			
+			//Calculamos posiciÃ³n de flanqueo 2 -45Âº			
 			_dirf2 = (_dir2-_newflankAngle+360) mod 360;		
 			_flankPos2 = [_targetPos,_dirf2, _flankdist] call MON_GetPos2D;	
 			
@@ -1552,7 +1552,7 @@ while {_loop} do {
 						
 						
 			//Decidir por el mejor punto de flanqueo
-			//Contamos las posiciones de destino de otros grupos más alejadas
+			//Contamos las posiciones de destino de otros grupos mÃ¡s alejadas
 			_fldest = 0;
 			_fldest2 = 0;
 			_fldestfront = 0;
@@ -1594,7 +1594,7 @@ while {_loop} do {
 						
 			
 			
-			//La preferencia es la elección inicial de dirección
+			//La preferencia es la elecciÃ³n inicial de direcciÃ³n
 			switch (_flankdir) do {
 				case 1: 
 					{_prov = 125};
@@ -1605,15 +1605,15 @@ while {_loop} do {
 			};						
 			
 			
-			//Si es positivo significa que hay más destinos existentes lejanos a la posicion de flanqueo1, tomamos primariamente este
+			//Si es positivo significa que hay mÃ¡s destinos existentes lejanos a la posicion de flanqueo1, tomamos primariamente este
 			if (_fldest<_fldest2) then {_prov = _prov + 50;};
 			if (_fldest2<_fldest) then {_prov = _prov - 50;};		
 
-			//Si la provablilidad es negativa indica que tomará el flank2 por lo tanto la provabilidad de coger 1 es 0
+			//Si la provablilidad es negativa indica que tomarÃ¡ el flank2 por lo tanto la provabilidad de coger 1 es 0
 			if (_prov<0) then {_prov = 0;};
 			
 				
-			//Evaluamos la dirección en base a la provablilidad calculada
+			//Evaluamos la direcciÃ³n en base a la provablilidad calculada
 			if ((random 100) <= _prov) then {
 				_flankdir =1;
 				_flankPos = _flankPos; _targettext = "_flankPos";
@@ -1623,7 +1623,7 @@ while {_loop} do {
 			};			
 			
 					
-			//Posición de ataque por defecto el flanco
+			//PosiciÃ³n de ataque por defecto el flanco
 			_targetPos = _flankPos;
 			_targettext = "_flankPos";
 			
@@ -1697,7 +1697,7 @@ while {_loop} do {
 						_Behaviour =  "COMBAT"; 	//AWARE
 						_wptype = "HOLD";							
 					} else {	
-						//Movimiento con precaución (más rápido)				
+						//Movimiento con precauciÃ³n (mÃ¡s rÃ¡pido)				
 						_Behaviour =  "AWARE"; 		
 						_wptype = "MOVE";						
 					};										
@@ -1800,7 +1800,7 @@ while {_loop} do {
 
 
 
-			//Si es unidad de refuerzo siempre acosará al enemigo
+			//Si es unidad de refuerzo siempre acosarÃ¡ al enemigo
 			if (_reinforcementsent) then {
 				_wptype="MOVE";
 				_newpos=true; 
@@ -2478,7 +2478,7 @@ while {_loop} do {
     
     
    	// check external loop switch
-    _npcname = vehicleVarname _npc;
+    _npcname = "UNKNOWN"; //vehicleVarname _npc;
 	_cont = (call compile format ["KRON_UPS_%1",_npcname]);
 	
     if (_cont==0) then { // exit loop criterium
